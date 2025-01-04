@@ -212,6 +212,7 @@ const ContactListItems = () => {
   };
 
   const handleImportContacts = async () => {
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("file", fileUploadRef.current.files[0]);
@@ -220,8 +221,20 @@ const ContactListItems = () => {
         method: "POST",
         data: formData,
       });
+      toast.success(i18n.t("Lista importada com sucesso"));
+      setSearchParam(""); // Reset search parameter to trigger re-fetch
+      setPageNumber(1); // Reset page number to fetch from the first page
+
+      // Fetch contacts again to reload the table data
+      const { data } = await api.get(`contact-list-items`, {
+        params: { searchParam, pageNumber: 1, contactListId },
+      });
+      dispatch({ type: "LOAD_CONTACTS", payload: data.contacts });
+      setHasMore(data.hasMore);
     } catch (err) {
       toastError(err);
+    } finally {
+      setLoading(false);
     }
   };
 

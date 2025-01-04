@@ -340,6 +340,8 @@ async function handleVerifyCampaigns(job) {
 
   isProcessing = true;
   try {
+
+    logger.info(`Buscando Campanhas`);
     await new Promise(r => setTimeout(r, 1500));
 
     const campaigns: { id: number; scheduledAt: string }[] =
@@ -348,7 +350,7 @@ async function handleVerifyCampaigns(job) {
         WHERE "scheduledAt" BETWEEN NOW() AND NOW() + INTERVAL '3 hour' AND status = 'PROGRAMADA'`,
         { type: QueryTypes.SELECT }
       );
-
+      logger.info(`Resultado  ${campaigns}`);
     if (campaigns.length > 0) {
       logger.info(`Campanhas encontradas: ${campaigns.length}`);
 
@@ -729,6 +731,8 @@ async function handleProcessCampaign(job) {
   try {
     const { id }: ProcessCampaignData = job.data;
     const campaign = await getCampaign(id);
+    console.log(campaign);
+    console.log('Passando aqui');
     const settings = await getSettings(campaign);
     if (campaign) {
       const { contacts } = campaign.contactList;
