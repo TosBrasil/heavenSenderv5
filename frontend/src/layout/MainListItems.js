@@ -530,11 +530,11 @@ const MainListItems = ({ collapsed, drawerClose }) => {
         </>
       )}
 
-      {/* <ListItemLink
+      { <ListItemLink
         to="/todolist"
-        primary={i18n.t("ToDoList")}
+        primary={i18n.t("Tarefas")}
         icon={<EventAvailableIcon />}
-      /> */}
+      /> }
       {hasHelps && (
         <ListItemLink
           to="/helps"
