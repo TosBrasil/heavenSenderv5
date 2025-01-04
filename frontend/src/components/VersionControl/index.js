@@ -28,7 +28,7 @@ const VersionControl = () => {
 
   return (
     <div>
-      {storedVersion !== packageVersion && (
+      {/* {storedVersion !== packageVersion && (
         <Button
           variant="contained"
           size="small"
@@ -42,7 +42,7 @@ const VersionControl = () => {
         >
           Nova versão disponível! Clique aqui para atualizar
         </Button>
-      )}
+      )} */}
     </div>
   );
 };

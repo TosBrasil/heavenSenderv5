@@ -435,7 +435,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             style={{
               display: "block",
               margin: "0 auto",
-              height: "50px",
+              height: "60px",
               width: "100%",
             }}
             alt="logo" />
