@@ -670,16 +670,16 @@ const messages = {
         title: {
           add: "Nova Tag",
           edit: "Editar Tag",
-          addKanban: "Nova Lane",
-          editKanban: "Editar Lane",
+          addKanban: "Nova Fase",
+          editKanban: "Editar Fase",
         },
         form: {
           name: "Nome",
           color: "Cor",
-          timeLane: "Tempo em horas para redirecionar para lane",
-          nextLaneId: "Lane",
-          greetingMessageLane: "Mensagem de saudação da lane",
-          rollbackLaneId: "Voltar para Lane após retomar atendimento"
+          timeLane: "Tempo em horas para redirecionar para Fase",
+          nextLaneId: "Fase",
+          greetingMessageLane: "Mensagem de saudação da Fase",
+          rollbackLaneId: "Voltar para Fase após retomar atendimento"
         },
         buttons: {
           okAdd: "Adicionar",
@@ -687,7 +687,7 @@ const messages = {
           cancel: "Cancelar",
         },
         success: "Tag salva com sucesso.",
-        successKanban: "Lane salva com sucesso.",
+        successKanban: "Fase salva com sucesso.",
       },
       fileModal: {
         title: {
@@ -872,7 +872,7 @@ const messages = {
           quickMessages: "Respostas rápidas",
           contacts: "Contatos",
           queues: "Filas & Chatbot",
-          tags: "Tags",
+          tags: "Etiquetas",
           administration: "Administração",
           companies: "Empresas",
           users: "Usuários",
@@ -1076,7 +1076,7 @@ const messages = {
         searchPlaceholder: "Pesquisa",
         subMenus: {
           list: "Painel",
-          tags: "Lanes",
+          tags: "Fases",
         },
       },
 
@@ -1142,7 +1142,7 @@ const messages = {
             scheduledAt: "Agendamento",
             confirmation: "Confirmação",
             contactList: "Lista de Contato",
-            tagList: "Tags",
+            tagList: "Etiquetas",
             statusTicket: "Status do Ticket",
             openTicketStatus: "Aberto",
             pendingTicketStatus: "Pendente",
@@ -1448,9 +1448,9 @@ const messages = {
         },
       },
       tags: {
-        title: "Tags",
+        title: "Etiquetas",
         confirmationModal: {
-          deleteTitle: "Você tem certeza que quer excluir esta Tag?",
+          deleteTitle: "Você tem certeza que quer excluir esta Etiquetas?",
           deleteMessage: "Esta ação não pode ser revertida.",
         },
         table: {
@@ -1458,7 +1458,7 @@ const messages = {
           name: "Nome",
           kanban: "Kanban",
           color: "Cor",
-          tickets: "Registros Tags",
+          tickets: "Registros Etiquetas",
           contacts: "Contatos",
           actions: "Ações",
         },
@@ -1471,10 +1471,10 @@ const messages = {
       },
 
       tagsKanban: {
-        title: "Lanes",
+        title: "Fases",
         laneDefault: "Em aberto",
         confirmationModal: {
-          deleteTitle: "Você tem certeza que quer excluir esta Lane?",
+          deleteTitle: "Você tem certeza que quer excluir esta Fase?",
           deleteMessage: "Esta ação não pode ser revertida.",
         },
         table: {
@@ -1484,10 +1484,10 @@ const messages = {
           actions: "Ações",
         },
         buttons: {
-          add: "Nova Lane",
+          add: "Nova Fase",
         },
         toasts: {
-          deleted: "Lane excluída com sucesso.",
+          deleted: "Fase excluída com sucesso.",
         },
       },
 

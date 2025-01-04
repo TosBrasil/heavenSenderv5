@@ -96,12 +96,12 @@ export function TagsKanbanContainer({ ticket }) {
     return (
         <>
             <FormControl fullWidth margin="dense" variant="outlined">
-                <InputLabel id="tag-kanban-id">{i18n.t("Etapa Kanban")}</InputLabel>
+                <InputLabel id="tag-kanban-id">{i18n.t("Fase Kanban")}</InputLabel>
                 <Select
                     labelWidth={60}
                     value={selected}
                     labelId="tag-kanban-id"
-                    label={i18n.t("Etapa Kanban")}
+                    label={i18n.t("Fase Kanban")}
                     onChange={onChange}
                     MenuProps={{
                         anchorOrigin: {

@@ -309,7 +309,7 @@ const Kanban = () => {
             color="primary"
             onClick={handleAddConnectionClick}
           >
-            {'+ Adicionar colunas'}
+            {'+ Adicionar Fases'}
           </Button>
         )} />
       </div>
