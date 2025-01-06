@@ -321,6 +321,8 @@ async function handleSendScheduledMessage(job) {
       });
     }
     logger.info(`Mensagem agendada enviada para: ${schedule.contact.name}`);
+    console.log(`Mensagem agendada enviada para: ${schedule.contact.name}`);
+
     sendScheduledMessages.clean(15000, "completed");
   } catch (e: any) {
     Sentry.captureException(e);
@@ -342,6 +344,7 @@ async function handleVerifyCampaigns(job) {
   try {
 
     logger.info(`Buscando Campanhas`);
+    console.log(`Buscando Campanhas`);
     await new Promise(r => setTimeout(r, 1500));
 
     const campaigns: { id: number; scheduledAt: string }[] =
