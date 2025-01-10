@@ -56,7 +56,7 @@ export const createExtraction = async (req: Request, res: Response): Promise<Res
       captacaoId: captacao.id,
     });
 
-    const pythonCommand = `python src/scripts/GMapsPlaywright.py --state "${state}" --city "${city}" --segment "${segment}" --totalResults "${leadCount}"`;
+    const pythonCommand = `python3 src/scripts/GMapsPlaywright.py --state "${state}" --city "${city}" --segment "${segment}" --totalResults "${leadCount}"`;
 
     exec(pythonCommand, async (error, stdout, stderr) => {
       if (error || stderr) {
