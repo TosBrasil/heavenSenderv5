@@ -58,8 +58,6 @@ export const createExtraction = async (req: Request, res: Response): Promise<Res
 
     const pythonCommand = `/home/deploy/heaven/backend/src/scripts/venv/bin/python /home/deploy/heaven/backend/src/scripts/GMapsPlaywright.py --state "${state}" --city "${city}" --segment "${segment}" --totalResults "${leadCount}"`;
 
-
-
     exec(pythonCommand, async (error, stdout, stderr) => {
       if (error || stderr) {
         console.error(`Erro ao executar script Python: ${error?.message || stderr}`);
@@ -233,7 +231,9 @@ export const createContactList = async (req: Request, res: Response): Promise<Re
   }
 };
 
-const formatPhone = (phone: string): string => {
+const formatPhone = (phone: string | null): string => {
+  if (!phone) return '';
+
   // Remove all non-numeric characters
   let formattedPhone = phone.replace(/\D/g, '');
 
