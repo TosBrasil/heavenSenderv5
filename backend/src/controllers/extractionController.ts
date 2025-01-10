@@ -56,7 +56,8 @@ export const createExtraction = async (req: Request, res: Response): Promise<Res
       captacaoId: captacao.id,
     });
 
-    const pythonCommand = `/home/deploy/heaven/backend/venv/bin/python /home/deploy/heaven/backend/src/scripts/GMapsPlaywright.py --state "${state}" --city "${city}" --segment "${segment}" --totalResults "${leadCount}"`;
+    const pythonCommand = `/home/deploy/heaven/backend/src/scripts/venv/bin/python /home/deploy/heaven/backend/src/scripts/GMapsPlaywright.py --state "${state}" --city "${city}" --segment "${segment}" --totalResults "${leadCount}"`;
+
 
 
     exec(pythonCommand, async (error, stdout, stderr) => {
