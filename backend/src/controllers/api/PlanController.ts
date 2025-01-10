@@ -56,6 +56,7 @@ type UpdatePlanData = {
   recurrence?: string;
   useOpenAi?: boolean;
   useIntegrations?: boolean;
+  useCaptadorLead?: boolean;
 };
 
 export const index = async (req: Request, res: Response): Promise<Response> => {
@@ -91,6 +92,7 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     useExternalApi: Yup.boolean(),
     useInternalChat: Yup.boolean(),
     useSchedules: Yup.boolean(),
+    useCaptadorLead: Yup.boolean(),
     trial: Yup.boolean(),
     trialDays: Yup.number(),
     recurrence: Yup.string().required(),
@@ -136,6 +138,7 @@ export const update = async (
     useExternalApi: Yup.boolean(),
     useInternalChat: Yup.boolean(),
     useSchedules: Yup.boolean(),
+    useCaptadorLead: Yup.boolean(),
     trial: Yup.boolean(),
     trialDays: Yup.number(),
     recurrence: Yup.string().required(),

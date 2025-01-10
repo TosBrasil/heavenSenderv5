@@ -46,6 +46,7 @@ import QueueIntegration from "../pages/QueueIntegration";
 import Files from "../pages/Files";
 import ToDoList from "../pages/ToDoList";
 import Kanban from "../pages/Kanban";
+import Extracao from "../pages/Extracao";
 import TagsKanban from "../pages/TagsKanban";
 const Routes = () => {
   const [showCampaigns, setShowCampaigns] = useState(false);
@@ -67,7 +68,7 @@ const Routes = () => {
             <WhatsAppsProvider>
               <LoggedInLayout>
                 <Route exact path="/financeiro" component={Financeiro} isPrivate />
-
+                <Route exact path="/extractor" component={Extracao} isPrivate />
                 <Route exact path="/companies" component={Companies} isPrivate />
                 <Route exact path="/" component={Dashboard} isPrivate />
                 <Route exact path="/tickets/:ticketId?" component={TicketResponsiveContainer} isPrivate />

@@ -20,6 +20,7 @@ import SyncAltIcon from "@material-ui/icons/SyncAlt";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
 import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -221,6 +222,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
   const [showSchedules, setShowSchedules] = useState(false);
   const [showInternalChat, setShowInternalChat] = useState(false);
   const [showExternalApi, setShowExternalApi] = useState(false);
+  const [showCaptadorLead, setShowCaptadorLead] = useState(false);
 
   const [invisible, setInvisible] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
@@ -250,9 +252,9 @@ const MainListItems = ({ collapsed, drawerClose }) => {
     location.pathname.startsWith("/contact-lists") ||
     location.pathname.startsWith("/campaigns-config");
 
-  const isFlowbuilderRouteActive = 
+  const isFlowbuilderRouteActive =
     location.pathname.startsWith("/phrase-lists")
-    location.pathname.startsWith("/flowbuilders")
+  location.pathname.startsWith("/flowbuilders")
 
   useEffect(() => {
     if (location.pathname.startsWith("/tickets")) {
@@ -284,6 +286,8 @@ const MainListItems = ({ collapsed, drawerClose }) => {
     async function fetchData() {
       const companyId = user.companyId;
       const planConfigs = await getPlanCompany(undefined, companyId);
+      console.log(planConfigs)
+      console.log(planConfigs.plan.useCaptadorLead)
 
       setShowCampaigns(planConfigs.plan.useCampaigns);
       setShowKanban(planConfigs.plan.useKanban);
@@ -292,6 +296,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
       setShowSchedules(planConfigs.plan.useSchedules);
       setShowInternalChat(planConfigs.plan.useInternalChat);
       setShowExternalApi(planConfigs.plan.useExternalApi);
+      setShowCaptadorLead(planConfigs.plan.useCaptadorLead);
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -497,6 +502,19 @@ const MainListItems = ({ collapsed, drawerClose }) => {
         tooltip={collapsed}
       />
 
+
+
+      {showCaptadorLead && (
+        <>
+          <ListItemLink
+            to="/extractor"
+            primary={"Captador"}
+            icon={<ContactsOutlinedIcon />}
+            tooltip={collapsed}
+          />
+        </>
+      )}
+
       {showSchedules && (
         <>
           <ListItemLink
@@ -530,11 +548,11 @@ const MainListItems = ({ collapsed, drawerClose }) => {
         </>
       )}
 
-      { <ListItemLink
+      {<ListItemLink
         to="/todolist"
         primary={i18n.t("Tarefas")}
         icon={<EventAvailableIcon />}
-      /> }
+      />}
       {hasHelps && (
         <ListItemLink
           to="/helps"

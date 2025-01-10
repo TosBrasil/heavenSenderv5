@@ -74,6 +74,7 @@ export function PlanManagerForm(props) {
         queues: 0,
         amount: 0,
         useWhatsapp: true,
+        useCaptadorLead: true,
         useFacebook: true,
         useInstagram: true,
         useCampaigns: true,
@@ -367,6 +368,22 @@ export function PlanManagerForm(props) {
                                 </Field>
                             </FormControl>
                         </Grid>
+                        <Grid xs={12} sm={8} md={2} item>
+                            <FormControl margin="dense" variant="outlined" fullWidth>
+                                <InputLabel htmlFor="useCaptadorLead-selection">Captador de Lead</InputLabel>
+                                <Field
+                                    as={Select}
+                                    id="useCaptadorLead-selection"
+                                    label="Captador Lead"
+                                    labelId="useCaptadorLead-selection-label"
+                                    name="useCaptadorLead"
+                                    margin="dense"
+                                >
+                                    <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
+                                    <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
+                                </Field>
+                            </FormControl>
+                        </Grid>
                     </Grid>
                     <Grid spacing={2} justifyContent="flex-end" container>
 
@@ -438,6 +455,10 @@ export function PlansManagerGrid(props) {
         return row.useIntegrations === false ? `${i18n.t("plans.form.no")}` : `${i18n.t("plans.form.yes")}`;
     };
 
+    const renderCaptadorLead = (row) => {
+        return row.useCaptadorLead === false ? `${i18n.t("plans.form.no")}` : `${i18n.t("plans.form.yes")}`;
+    };
+
     return (
         <Paper className={classes.tableContainer}>
             <Table
@@ -465,6 +486,7 @@ export function PlansManagerGrid(props) {
                         <TableCell align="center">Kanban</TableCell>
                         <TableCell align="center">Talk.Ai</TableCell>
                         <TableCell align="center">Integrações</TableCell>
+                        <TableCell align="center">Captador de Lead</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -491,6 +513,7 @@ export function PlansManagerGrid(props) {
                             <TableCell align="center">{renderKanban(row)}</TableCell>
                             <TableCell align="center">{renderOpenAi(row)}</TableCell>
                             <TableCell align="center">{renderIntegrations(row)}</TableCell>
+                            <TableCell align="center">{renderCaptadorLead(row)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -522,6 +545,7 @@ export default function PlansManager() {
         useKanban: true,
         useOpenAi: true,
         useIntegrations: true,
+        useCaptadorLead: true,
         isPublic: true
     })
 
@@ -588,6 +612,7 @@ export default function PlansManager() {
             queues: 0,
             amount: 0,
             useWhatsapp: true,
+            useCaptadorLead: true,
             useFacebook: true,
             useInstagram: true,
             useCampaigns: true,
@@ -613,6 +638,7 @@ export default function PlansManager() {
         let useKanban = data.useKanban === false ? false : true
         let useOpenAi = data.useOpenAi === false ? false : true
         let useIntegrations = data.useIntegrations === false ? false : true
+        let useCaptadorLead = data.useCaptadorLead === false ? false : true
 
         setRecord({
             id: data.id,
@@ -631,6 +657,7 @@ export default function PlansManager() {
             useKanban,
             useOpenAi,
             useIntegrations,
+            useCaptadorLead,
             isPublic: data.isPublic
         })
     }

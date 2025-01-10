@@ -29,7 +29,7 @@ class ContactListItem extends Model<ContactListItem> {
   @Column
   number: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Default("")
   @Column
   email: string;

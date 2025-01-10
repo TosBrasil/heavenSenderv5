@@ -42,6 +42,11 @@ export const initIO = (httpServer: Server): SocketIO => {
       socket.join(ticketId);
     });
 
+    socket.on("statusUpdate", (data) => {
+      console.log(`Captação ${data.captacaoId} mudou para status: ${data.status}`);
+      // Atualizar a interface com base no status recebido
+    });
+
     socket.on("joinNotification", () => {
       // logger.info(`A client joined notification channel namespace ${socket.nsp.name}`);
       socket.join("notification");
