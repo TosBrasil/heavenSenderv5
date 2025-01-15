@@ -878,7 +878,7 @@ const messages = {
           users: "Usuários",
           settings: "Configurações",
           files: "Lista de arquivos",
-          helps: "Ajuda",
+          helps: "Tutorial",
           messagesAPI: "API",
           schedules: "Agendamentos",
           campaigns: "Campanhas",

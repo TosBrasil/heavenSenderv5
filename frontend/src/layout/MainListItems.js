@@ -13,6 +13,7 @@ import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
+import SchoolIcon from '@mui/icons-material/School';
 
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -557,7 +558,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
         <ListItemLink
           to="/helps"
           primary={i18n.t("mainDrawer.listItems.helps")}
-          icon={<HelpOutlineIcon />}
+          icon={<SchoolIcon />}
           tooltip={collapsed}
         />
       )}
