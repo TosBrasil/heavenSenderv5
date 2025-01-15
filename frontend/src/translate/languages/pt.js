@@ -1417,7 +1417,7 @@ const messages = {
         },
       },
       helps: {
-        title: "Central de Ajuda",
+        title: "Aprenda a usar o sistema",
         settings: {
           codeVideo: "Código do Video",
           description: "Descrição",
