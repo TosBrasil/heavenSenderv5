@@ -9,6 +9,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme)=> ({
   root: {
@@ -36,7 +37,10 @@ const useStyles = makeStyles((theme)=> ({
   list: {
     marginBottom: '5px',
     color: theme.palette.text.primary
-  }
+  },
+  divider: {
+    backgroundColor: theme.palette.divider,
+  },
 }));
 
 const ToDoList = () => {
@@ -110,6 +114,7 @@ const ToDoList = () => {
       <div className={classes.listContainer}>
         <List>
           {tasks.map((task, index) => (
+          <React.Fragment key={index}>
             <ListItem key={index} className={classes.list}>
               <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
               <ListItemSecondaryAction>
@@ -121,6 +126,8 @@ const ToDoList = () => {
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
+            {index < tasks.length - 1 && <Divider className={classes.divider} />}
+            </React.Fragment>
           ))}
         </List>
       </div>

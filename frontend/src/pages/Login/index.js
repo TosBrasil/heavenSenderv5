@@ -20,20 +20,51 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		width: "100vw",
 		height: "100vh",
-		background: theme.mode === "light" ? theme.palette.light : theme.palette.dark,
+		backgroundImage: "url('/background-login.jpg')",
 		backgroundRepeat: "no-repeat",
-		backgroundSize: "100% 100%",
+		backgroundSize: "cover",
 		backgroundPosition: "center",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
 		textAlign: "center",
-	},
+		"& input:-webkit-autofill": {
+			WebkitBoxShadow: "0 0 0 100pxrgba(0, 0, 0, 0) inset", // Fundo preto (ou qualquer cor que preferir)
+			WebkitTextFillColor: "#fff", // Cor do texto
+			transition: "background-color 5000s ease-in-out 0s",
+		  },
+		  "& .MuiOutlinedInput-root": {
+			borderRadius: "25px", // Bordas arredondadas
+			backgroundColor: "rgba(255, 255, 255, 0.1)", // Fundo semi-transparente
+			color: "#fff", // Texto branco
+			"& fieldset": {
+			  borderColor: "rgba(255, 255, 255, 0.5)", // Cor da borda
+			},
+			"&:hover fieldset": {
+			  borderColor: "#fff", // Cor da borda ao passar o mouse
+			},
+			"&.Mui-focused fieldset": {
+			  borderColor: theme.palette.primary.main, // Cor da borda ao focar
+			  boxShadow: theme.palette.primary.main, // Efeito de brilho
+			},
+		  },
+		  "& .MuiInputLabel-outlined": {
+			color: "rgba(255, 255, 255, 0.7)", // Cor do label
+			"&.Mui-focused": {
+			  color: "#fff", // Cor do label ao focar
+			},
+		  },
+		  "& input:-webkit-autofill": {
+			WebkitBoxShadow: "0 0 0 100px rgba(0, 0, 0, 0.7) inset", // Fundo do autofill
+			backgroundColor: "transparent",
+			WebkitTextFillColor: "#fff", // Cor do texto no autofill
+		  },
+	  },
 	paper: {
-		backgroundColor: theme.mode === "light" ? "rgba(255, 255, 255, 0.7)" : "rgba(255, 255, 255, 0.2)",
+		backgroundColor: theme.mode === "rgba(255, 255, 255, 0.2)",
 		backdropFilter: "blur(10px)",
-		boxShadow: theme.mode === "light" ? "0 4px 6px rgba(0, 0, 0, 0.1)" : "0 4px 6px rgba(255, 255, 255, 0.2)",
+		boxShadow: theme.mode === "light" ? "0 4px 6px rgba(255, 255, 255, 0.2)" : "0 4px 6px rgba(255, 255, 255, 0.2)",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -49,8 +80,23 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 	},
 	submit: {
-		margin: theme.spacing(3, 0, 2),
-	},
+		backgroundColor: "transparent",
+		color: "#fff",
+		border: "2px solid rgba(255, 255, 255, 0.7)",
+		fontSize: "16px",
+		fontWeight: "bold",
+		borderRadius: "25px",
+		padding: "10px 20px",
+		marginTop: "20px", // Adiciona espaço entre o campo e o botão
+		transition: "all 0.4s ease",
+		cursor: "pointer",
+		"&:hover": {
+		  background: theme.palette.primary.main,
+		  color: "#fff",
+		  borderColor: "transparent",
+		  boxShadow: "0 2px 7px rgba(250, 250, 250, 0.28)",
+		},
+	  },
 	powered: {
 		color: "white",
 	},
@@ -60,10 +106,11 @@ const useStyles = makeStyles((theme) => ({
 		height: "auto",
 		maxHeight: "120px",
 		margin: "0 auto",
-		content: "url(" + (theme.mode === "light" ? theme.calculatedLogoLight() : theme.calculatedLogoDark()) + ")",
+		content: "url(" + (theme.mode === "light" ? theme.calculatedLogoDark() : theme.calculatedLogoDark()) + ")",
 	},
 	iconButton: {
 		position: "absolute",
+		display: "none",
 		top: 10,
 		right: 10,
 		color: theme.mode === "light" ? "black" : "white",
@@ -108,10 +155,10 @@ const Login = () => {
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />
 					<div className={classes.paper}>
-						<IconButton className={classes.iconButton} onClick={colorMode.toggleColorMode}>
-							{mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
-						</IconButton>
-						<div>
+					<IconButton className={classes.iconButton} onClick={colorMode.toggleColorMode}>
+							{mode === "dark" ? <Brightness7Icon /> : <Brightness7Icon />}
+					</IconButton>						
+					<div>
 							<img className={classes.logoImg} alt="logo" />
 						</div>
 						<form className={classes.form} noValidate onSubmit={handlSubmit}>
@@ -141,8 +188,13 @@ const Login = () => {
 								onChange={handleChangeInput}
 								autoComplete="current-password"
 							/>
-							<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-								{i18n.t("login.buttons.submit")}
+							<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							className={classes.submit}
+							>
+							{i18n.t("login.buttons.submit")}
 							</Button>
 							{allowSignup && (
 								<Grid container>
@@ -157,6 +209,7 @@ const Login = () => {
 					</div>
 				</Container>
 			</div>
+			
 		</>
 	);
 };
