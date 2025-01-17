@@ -539,51 +539,51 @@ const FlowBuilderSingleBlockModal = ({
     document.querySelector(`.btnVideo${number}`).remove();
   };
 
-  const imgLayout = (number, valueDefault = "") => {
-    return (
-      <Stack
-        sx={{
-          border: "1px solid #0000FF",
-          borderRadius: "7px",
-          padding: "6px",
-          position: "relative"
-        }}
-        className={`stackImg${number}`}
-        key={`stackImg${number}`}
-      >
-        <Stack sx={{ position: "absolute", right: 6 }}>
-          <Delete onClick={() => deleteElementsTypeOne(number, "img")} />
-        </Stack>
-        <Typography textAlign={"center"}>Imagem</Typography>
-        <Stack direction={"row"} justifyContent={"center"}>
-          <img
-            src={
-              valueDefault.length > 0
-                ? process.env.REACT_APP_BACKEND_URL + "/public/" + valueDefault
-                : ""
-            }
-            className={`img${number}`}
-            style={{ width: "200px" }}
-          />
-        </Stack>
-        {valueDefault.length === 0 && (
-          <Button
-            variant="contained"
-            component="label"
-            className={`btnImg${number}`}
-          >
-            Enviar imagem
-            <input
-              type="file"
-              accept="image/png, image/jpg, image/jpeg"
-              hidden
-              onChange={e => handleChangeMediasImg(e, number)}
-            />
-          </Button>
-        )}
-      </Stack>
-    );
-  };
+  // const imgLayout = (number, valueDefault = "") => {
+  //   return (
+  //     <Stack
+  //       sx={{
+  //         border: "1px solid #0000FF",
+  //         borderRadius: "7px",
+  //         padding: "6px",
+  //         position: "relative"
+  //       }}
+  //       className={`stackImg${number}`}
+  //       key={`stackImg${number}`}
+  //     >
+  //       <Stack sx={{ position: "absolute", right: 6 }}>
+  //         <Delete onClick={() => deleteElementsTypeOne(number, "img")} />
+  //       </Stack>
+  //       <Typography textAlign={"center"}>Imagem</Typography>
+  //       <Stack direction={"row"} justifyContent={"center"}>
+  //         <img
+  //           src={
+  //             valueDefault.length > 0
+  //               ? process.env.REACT_APP_BACKEND_URL + "/public/" + valueDefault
+  //               : ""
+  //           }
+  //           className={`img${number}`}
+  //           style={{ width: "200px" }}
+  //         />
+  //       </Stack>
+  //       {valueDefault.length === 0 && (
+  //         <Button
+  //           variant="contained"
+  //           component="label"
+  //           className={`btnImg${number}`}
+  //         >
+  //           Enviar imagem
+  //           <input
+  //             type="file"
+  //             accept="image/png, image/jpg, image/jpeg"
+  //             hidden
+  //             onChange={e => handleChangeMediasImg(e, number)}
+  //           />
+  //         </Button>
+  //       )}
+  //     </Stack>
+  //   );
+  // };
 
   const audioLayout = (number, valueDefault = "", valueRecordDefault = "") => {
     return (
@@ -1189,7 +1189,7 @@ const FlowBuilderSingleBlockModal = ({
                 />
                 Intervalo
               </Button>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
@@ -1215,7 +1215,7 @@ const FlowBuilderSingleBlockModal = ({
                   }}
                 />
                 Imagem
-              </Button>
+              </Button> */}
               <Button
                 variant="contained"
                 color="primary"
