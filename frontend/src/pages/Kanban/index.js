@@ -205,7 +205,19 @@ const Kanban = () => {
         label: filteredTickets.length.toString(),
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
-          label: "Ticket nº " + ticket.id.toString(),
+          label: <Typography
+          style={{
+            fontSize: "0.75rem", // Tamanho reduzido
+            color: "#555", // Cor ajustada
+            textAlign: "right", // Alinha a data/hora à direita
+          }}
+        >
+          {isSameDay(parseISO(ticket.updatedAt), new Date()) ? (
+            <>{format(parseISO(ticket.updatedAt), "HH:mm")}</>
+          ) : (
+            <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
+          )}
+        </Typography>,
           description: (
               <div  style={{
                 display: "flex",
@@ -221,7 +233,7 @@ const Kanban = () => {
               >
                 Ver Ticket
               </Button>
-              <Typography
+              {/* <Typography
                   style={{
                     fontSize: "0.75rem", // Tamanho reduzido
                     color: "#555", // Cor ajustada
@@ -233,7 +245,7 @@ const Kanban = () => {
                   ) : (
                     <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
                   )}
-                </Typography>
+                </Typography> */}
               {/* <div style={{ textAlign: 'left' }}>{ticket.lastMessage || " "}</div> */}
               {/* <Button
                 className={`${classes.button} ${classes.cardButton}`}
@@ -266,11 +278,23 @@ const Kanban = () => {
 
         return {
           id: tag.id.toString(),
-          title: tag.name,
+          title: tag.name.length > 15 ? `${tag.name.substring(0, 15)}...` : tag.name,
           label: filteredTickets?.length.toString(),
           cards: filteredTickets.map(ticket => ({
             id: ticket.id.toString(),
-            label: "Ticket nº " + ticket.id.toString(),
+            label: <Typography
+            style={{
+              fontSize: "0.75rem", // Tamanho reduzido
+              color: "#555", // Cor ajustada
+              textAlign: "right", // Alinha a data/hora à direita
+            }}
+          >
+            {isSameDay(parseISO(ticket.updatedAt), new Date()) ? (
+              <>{format(parseISO(ticket.updatedAt), "HH:mm")}</>
+            ) : (
+              <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
+            )}
+          </Typography>,
             description: (
               <div  style={{
                 display: "flex",
@@ -290,7 +314,7 @@ const Kanban = () => {
               >
                 Ver Ticket
               </Button>
-              <Typography
+              {/* <Typography
                     style={{
                       fontSize: "0.75rem", // Tamanho reduzido
                       color: "#555", // Cor ajustada
@@ -302,7 +326,7 @@ const Kanban = () => {
                   ) : (
                     <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
                   )}
-                </Typography>
+                </Typography> */}
                 <span style={{ marginRight: '8px' }} />
                   {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
               </div>
