@@ -74,13 +74,24 @@ const useStyles = makeStyles(theme => ({
   },
 
   dateInput: {
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: "#ffffff",
-    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
+    borderRadius: theme.shape.borderRadius, // Define bordas arredondadas
+    backgroundColor: "#ffffff", // Cor de fundo branca
+    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)", // Adiciona uma leve sombra
     "& .MuiOutlinedInput-root": {
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: "12px", // Borda mais arredondada
+      "& fieldset": {
+        borderColor: "#9050C5", // Cor da borda padrão
+      },
+      "&:hover fieldset": {
+        borderColor: "#9050C5", // Cor da borda ao passar o mouse
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#9050C5", // Cor da borda ao focar no campo
+        boxShadow: "2E0352", // Adiciona um brilho ao focar
+      },
     },
   },
+  
   scrollContainer: {
     width: "100%",
     overflowX: "auto",
@@ -255,7 +266,21 @@ const Kanban = () => {
                 Ver Ticket
               </Button> */}
               <span style={{ marginRight: '8px' }} />
-              {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
+              {ticket?.user && (
+  <Badge
+    style={{
+      backgroundColor: "#9050C5", // Cor mais amigável
+      color: "#ffffff", // Texto branco para contraste
+      borderRadius: "8px", // Arredondamento das bordas
+      padding: "4px 8px", // Espaçamento interno
+      fontWeight: "bold", // Texto destacado
+      fontSize: "0.50rem", // Tamanho da fonte ajustado
+    }}
+    className={classes.connectionTag}
+  >
+    {ticket.user?.name.toUpperCase()}
+  </Badge>
+)}
             </div>
           ),
           title: (
@@ -334,8 +359,22 @@ const Kanban = () => {
                   )}
                 </Typography> */}
                 <span style={{ marginRight: '8px' }} />
-                  {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
-              </div>
+                {ticket?.user && (
+              <Badge
+                style={{
+                  backgroundColor: "#9050C5", // Cor mais amigável
+                  color: "#ffffff", // Texto branco para contraste
+                  borderRadius: "8px", // Arredondamento das bordas
+                  padding: "4px 8px", // Espaçamento interno
+                  fontWeight: "bold", // Texto destacado
+                  fontSize: "0.50rem", // Tamanho da fonte ajustado
+                }}
+                className={classes.connectionTag}
+              >
+                {ticket.user?.name.toUpperCase()}
+              </Badge>
+            )}
+            </div>
             ),
             title: (
               <>
