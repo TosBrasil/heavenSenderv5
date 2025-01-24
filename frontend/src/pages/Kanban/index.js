@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   },
   button: {
-    background: "linear-gradient(135deg, #6a5acd, #836fff)",
+    background: "linear-gradient(135deg, #4A0C7A, #2E0352)", // Gradiente baseado em #2E0352
     color: "#fff",
     fontWeight: "bold",
     borderRadius: "30px",
@@ -61,11 +61,12 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 4),
     transition: "transform 0.3s ease, box-shadow 0.3s ease",
     "&:hover": {
-      background: "linear-gradient(135deg, #836fff, #6a5acd)",
+      background: "linear-gradient(135deg, #5C0F9D, #3A0648)", // Alteração do gradiente para hover
       transform: "scale(1.05)",
-      boxShadow: "0px 6px 20px rgba(106, 90, 205, 0.3)",
+      boxShadow: "0px 6px 20px rgba(46, 3, 82, 0.3)", // Sombra ajustada para corresponder ao gradiente
     },
   },
+
   smallButton: {
     padding: theme.spacing(0.5, 2), // Menor padding
     fontSize: "0.75rem", // Reduz tamanho da fonte
