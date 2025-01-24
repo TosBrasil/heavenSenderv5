@@ -148,7 +148,7 @@ const Login = () => {
 	return (
 		<>
 			<Helmet>
-				<title>{appName || "SUA PLATAFORMA"}</title>
+				<title>{appName || "HEAVEN SENDER"}</title>
 				<link rel="icon" href={appLogoFavicon || "/default-favicon.ico"} />
 			</Helmet>
 			<div className={classes.root}>
