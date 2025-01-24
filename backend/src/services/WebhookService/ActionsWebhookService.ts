@@ -147,7 +147,7 @@ export const ActionsWebhookService = async (
 
 
     const lengthLoop = nodes.length;
-    const whatsapp = await GetDefaultWhatsApp(whatsappId, companyId);
+    const whatsapp = await GetDefaultWhatsApp(companyId);
 
     if (whatsapp.status !== "CONNECTED") {
       return;
