@@ -3,10 +3,10 @@ import Whatsapp from "../models/Whatsapp";
 import GetDefaultWhatsAppByUser from "./GetDefaultWhatsAppByUser";
 
 const GetDefaultWhatsApp = async (
-  whatsappId: number,
-  companyId?: number
+  companyId: number,
+  userId?: number
 ): Promise<Whatsapp> => {
-  // console.log(`Função GetDefaultWhatsApp chamada com companyId: ${companyId}, userId: ${userId}`);
+  console.log(`Função GetDefaultWhatsApp chamada com companyId: ${companyId}, userId: ${userId}`);
   
   let connection: Whatsapp;
 
@@ -28,23 +28,23 @@ const GetDefaultWhatsApp = async (
     connection = whatsapp;
   }
 
-  // if (userId) {
-  //   console.log(`Buscando WhatsApp pelo userId: ${userId}`);
-  //   const whatsappByUser = await GetDefaultWhatsAppByUser(userId);
-  //   console.log("WhatsApp encontrado pelo usuário:", whatsappByUser);
+  if (userId) {
+    console.log(`Buscando WhatsApp pelo userId: ${userId}`);
+    const whatsappByUser = await GetDefaultWhatsAppByUser(userId);
+    console.log("WhatsApp encontrado pelo usuário:", whatsappByUser);
     
-  //   if (whatsappByUser?.status === 'CONNECTED') {
-  //     console.log("O WhatsApp do usuário está conectado.");
-  //     connection = whatsappByUser;
-  //   } else {
-  //     console.log("O WhatsApp do usuário não está conectado, buscando outro WhatsApp conectado.");
-  //     const whatsapp = await Whatsapp.findOne({
-  //       where: { status: "CONNECTED", companyId }
-  //     });
-  //     console.log("WhatsApp conectado encontrado:", whatsapp);
-  //     connection = whatsapp;
-  //   }
-  // }
+    if (whatsappByUser?.status === 'CONNECTED') {
+      console.log("O WhatsApp do usuário está conectado.");
+      connection = whatsappByUser;
+    } else {
+      console.log("O WhatsApp do usuário não está conectado, buscando outro WhatsApp conectado.");
+      const whatsapp = await Whatsapp.findOne({
+        where: { status: "CONNECTED", companyId }
+      });
+      console.log("WhatsApp conectado encontrado:", whatsapp);
+      connection = whatsapp;
+    }
+  }
 
   if (!connection) {
     console.error(`Nenhuma conexão encontrada para a companyId: ${companyId}`);
