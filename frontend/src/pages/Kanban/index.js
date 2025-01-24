@@ -258,10 +258,16 @@ const Kanban = () => {
               {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
             </div>
           ),
-          title: <>
-            <Tooltip title={ticket.whatsapp?.name}>
-              {IconChannel(ticket.channel)}
-            </Tooltip> {ticket.contact.name}</>,
+          title: (
+            <>
+              <Tooltip title={ticket.whatsapp?.name}>
+                {IconChannel(ticket.channel)}
+              </Tooltip>{" "}
+              {ticket.contact.name.length > 13 
+                ? `${ticket.contact.name.substring(0, 13)}...` 
+                : ticket.contact.name}
+            </>
+          ),          
           draggable: true,
           href: "/tickets/" + ticket.uuid,
         })),
@@ -278,7 +284,7 @@ const Kanban = () => {
 
         return {
           id: tag.id.toString(),
-          title: tag.name.length > 15 ? `${tag.name.substring(0, 15)}...` : tag.name,
+          title: tag.name,
           label: filteredTickets?.length.toString(),
           cards: filteredTickets.map(ticket => ({
             id: ticket.id.toString(),
@@ -331,11 +337,16 @@ const Kanban = () => {
                   {ticket?.user && (<Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticket.user?.name.toUpperCase()}</Badge>)}
               </div>
             ),
-            title: <>
-              <Tooltip title={ticket.whatsapp?.name}>
-                {IconChannel(ticket.channel)}
-              </Tooltip> {ticket.contact.name}
-            </>,
+            title: (
+              <>
+                <Tooltip title={ticket.whatsapp?.name}>
+                  {IconChannel(ticket.channel)}
+                </Tooltip>{" "}
+                {ticket.contact.name.length > 13 
+                  ? `${ticket.contact.name.substring(0, 13)}...` 
+                  : ticket.contact.name}
+              </>
+            ),            
             draggable: true,
             href: "/tickets/" + ticket.uuid,
           })),
