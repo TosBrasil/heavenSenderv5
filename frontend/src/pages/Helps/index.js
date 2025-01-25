@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { makeStyles, Paper, Typography, Modal, IconButton } from "@material-ui/core";
+import { makeStyles, Paper, Typography, Modal } from "@material-ui/core";
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
@@ -8,52 +8,65 @@ import { i18n } from "../../translate/i18n";
 import useHelps from "../../hooks/useHelps";
 
 const useStyles = makeStyles(theme => ({
+  mainContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+  },
   mainPaperContainer: {
     overflowY: 'auto',
-    maxHeight: 'calc(100vh - 200px)',
+    flex: 1,
+    padding: theme.spacing(2),
   },
   mainPaper: {
-    width: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
     gap: theme.spacing(3),
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(3),
   },
   helpPaper: {
     position: 'relative',
     width: '100%',
-    minHeight: '340px',
     padding: theme.spacing(2),
     boxShadow: theme.shadows[3],
     borderRadius: theme.spacing(1),
     cursor: 'pointer',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    maxWidth: '340px',
-  },
-  paperHover: {
+    justifyContent: 'flex-start',
+    backgroundColor: theme.palette.background.paper,
     transition: 'transform 0.3s, box-shadow 0.3s',
     '&:hover': {
       transform: 'scale(1.03)',
-      boxShadow: `0 0 8px`,
-      color: theme.palette.primary.main,
+      boxShadow: `0 0 12px ${theme.palette.primary.main}`,
     },
   },
   videoThumbnail: {
     width: '100%',
-    height: 'calc(100% - 56px)',
+    aspectRatio: '16/9', // Garantindo o padrão 16:9
     objectFit: 'cover',
-    borderRadius: `${theme.spacing(1)}px ${theme.spacing(1)}px 0 0`,
+    borderRadius: theme.spacing(1),
   },
   videoTitle: {
-    marginTop: theme.spacing(1),
-    flex: 1,
+    marginTop: theme.spacing(2),
+    fontWeight: 600,
+    fontSize: '1rem',
+    color: theme.palette.text.primary,
+    textAlign: 'center',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   videoDescription: {
-    maxHeight: '100px',
+    marginTop: theme.spacing(1),
+    fontSize: '0.875rem',
+    color: theme.palette.text.secondary,
+    textAlign: 'center',
+    height: '3em',
     overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2, // Limita a 2 linhas
   },
   videoModal: {
     display: 'flex',
@@ -135,41 +148,44 @@ const Helps = () => {
     return (
       <>
         {records.length ? records.map((record, key) => {
-          // Extraindo apenas o ID do vídeo
           const videoId = record.video.includes("watch?v=")
             ? record.video.split("watch?v=")[1].split("&")[0]
             : record.video;
 
           return (
-            <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} onClick={() => openVideoModal(record.video)}>
+            <Paper
+              key={key}
+              className={classes.helpPaper}
+              onClick={() => openVideoModal(videoId)}
+            >
               <img
                 src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
                 alt="Thumbnail"
                 className={classes.videoThumbnail}
-                onError={(e) => e.target.src = '/path/to/placeholder-image.png'} // Adicionando fallback
               />
-              <Typography variant="button" className={classes.videoTitle}>
+              <Typography variant="h6" className={classes.videoTitle}>
                 {record.title}
               </Typography>
-              <Typography variant="caption" className={classes.videoDescription}>
+              <Typography variant="body2" className={classes.videoDescription}>
                 {record.description}
               </Typography>
             </Paper>
           );
         }) : null}
-
       </>
     );
   };
 
   return (
-    <MainContainer>
+    <MainContainer className={classes.mainContainer}>
       <MainHeader>
         <Title>{i18n.t("helps.title")} ({records.length})</Title>
         <MainHeaderButtonsWrapper></MainHeaderButtonsWrapper>
       </MainHeader>
-      <div className={classes.mainPaper}>
-        {renderHelps()}
+      <div className={classes.mainPaperContainer}>
+        <div className={classes.mainPaper}>
+          {renderHelps()}
+        </div>
       </div>
       {renderVideoModal()}
     </MainContainer>
