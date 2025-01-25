@@ -134,13 +134,19 @@ const Helps = () => {
   const renderHelps = () => {
     return (
       <>
-        <div className={`${classes.mainPaper} ${classes.mainPaperContainer}`}>
-          {records.length ? records.map((record, key) => (
+        {records.length ? records.map((record, key) => {
+          // Extraindo apenas o ID do vídeo
+          const videoId = record.video.includes("watch?v=")
+            ? record.video.split("watch?v=")[1].split("&")[0]
+            : record.video;
+
+          return (
             <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} onClick={() => openVideoModal(record.video)}>
               <img
-                src={`https://img.youtube.com/vi/${record.video}/mqdefault.jpg`}
+                src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
                 alt="Thumbnail"
                 className={classes.videoThumbnail}
+                onError={(e) => e.target.src = '/path/to/placeholder-image.png'} // Adicionando fallback
               />
               <Typography variant="button" className={classes.videoTitle}>
                 {record.title}
@@ -149,8 +155,9 @@ const Helps = () => {
                 {record.description}
               </Typography>
             </Paper>
-          )) : null}
-        </div>
+          );
+        }) : null}
+
       </>
     );
   };
