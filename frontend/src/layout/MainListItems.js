@@ -660,7 +660,7 @@ const MainListItems = ({ collapsed, drawerClose }) => {
                       <ListItemText
                         primary={
                           <Typography className={classes.listItemText}>
-                            {i18n.t("Flowbuilder")}
+                            {i18n.t("ChatBot")}
                           </Typography>
                         }
                       />
